@@ -1,6 +1,6 @@
 # README
 
-Boilerpalte for project start point
+Boilerpalte build upon Nodejs Express + Backbone for self-use prototyping project fast start point
 
 # Run 
 - webapp 
