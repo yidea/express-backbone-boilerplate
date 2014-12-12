@@ -1,0 +1,16 @@
+{{#extend "stylesheets"}}
+  <link rel="stylesheet" href="/css/index.css"/>
+{{/extend}}
+
+<h4>{{title}}</h4>
+<div>
+  {{#each data}}
+    <p>{{uid}}, {{name}}</p>
+  {{/each}}
+</div>
+
+{{#extend "scripts"}}
+  <script>
+    require(["js/main"]);
+  </script>
+{{/extend}}
