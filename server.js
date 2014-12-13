@@ -1,6 +1,5 @@
 var express = require("express"),
   exphbs = require("express-handlebars"),
-  Promise = require("bluebird"),
   app = express();
 
 // Express config & middleware
@@ -28,6 +27,7 @@ if ("development" === env) {
   app.enable("view cache"); // aggressive caching for prod
 }
 
+// View engine
 var hbs = exphbs.create({
   extname: ".handlebars",
   defaultLayout: "main.handlebars",
@@ -38,19 +38,18 @@ app.set("view engine", "handlebars");
 app.engine("handlebars", hbs.engine);
 
 // Express routes
-var appRouter = require("./routes/r-app"),
-  apiRouter = require("./routes/r-api");
-
-app.use("/", appRouter);
-app.use("/api", cors(), apiRouter);
+var routeApp = require("./routes/r-app"),
+  routeApi = require("./routes/r-api");
+app.use("/", routeApp); // webapp
+app.use("/api", cors(), routeApi); // api
 
 // 404 custom error handler
 app.use(function (req, res) { //handle all unhandled requests, put at bottom
   res.status(404).render("404", {title: "404 Sorry, page not found"});
 });
-app.listen(port);
 
+app.listen(port);
 if ("development" === env) {
-//  require("open")("http://doc.walmart.com:" + port + "/doc");
   console.log("Server running on port " + port);
 }
+module.exports = app;

@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-boilerplate",
+  "name": "express-backbone-boilerplate",
   "version": "0.0.1",
   "description": "",
   "main": "server.js",

@@ -17,5 +17,9 @@ http://localhost:3000/api
 
 ## Client Stack
 - bower + require + grunt
-- stylus
+- stylus for css precompile
 - backbone 
+
+## TODO
+- enable stylus runner
+- add grunt/gulp?
