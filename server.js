@@ -9,7 +9,7 @@ var bodyParser = require("body-parser"),
   cookieParser = require("cookie-parser"),
   compression = require("compression"),
   cors = require("cors"),
-  hbsHelper = require("./lib/hbs-helper");
+  hbsHelper = require("./helpers/hbs-helper");
 
 var port = process.env.PORT || 3000,
   env = process.env.NODE_ENV || "development";
@@ -38,16 +38,17 @@ app.set("view engine", "handlebars");
 app.engine("handlebars", hbs.engine);
 
 // Express routes
-var routeApp = require("./routes/r-app"),
-  routeApi = require("./routes/r-api");
-app.use("/", routeApp); // webapp
-app.use("/api", cors(), routeApi); // api
+var routerApp = require("./routes/r-app"),
+  routerApi = require("./routes/r-api");
+app.use("/", routerApp); // webapp
+app.use("/api", cors(), routerApi); // api
 
 // 404 custom error handler
 app.use(function (req, res) { //handle all unhandled requests, put at bottom
   res.status(404).render("404", {title: "404 Sorry, page not found"});
 });
 
+// Start server
 app.listen(port);
 if ("development" === env) {
   console.log("Server running on port " + port);
