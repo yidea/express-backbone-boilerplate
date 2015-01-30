@@ -5,11 +5,11 @@ define([
   "jquery",
   "underscore",
   "backbone",
-  "tireFinder/views/base-view",
-  "tireFinder/utils/finder-eventbus",
-  "tireFinder/utils/finder-state",
-  "tireFinder/utils/tab-widget",
-  "hbs!tireFinder/templates/car-make"
+  "common/product/views/base/base-view",
+  "common/finder/utils/finder-eventbus",
+  "common/finder/utils/finder-state",
+  "common/finder/utils/tab-widget",
+  "hbs!common/finder/templates/car-make"
 ], function ($, _, Backbone, BaseView, EventBus, AppState, TabWidget, tmpl) {
 
   return BaseView.extend({
@@ -27,9 +27,12 @@ define([
     },
 
     render: function () {
+      //TODO: temporary to fake loading effect
+      _.delay(function () {
+        EventBus.trigger("wizard:hideSpinner");
+      }, 300);
       this.$el.html(this.template(this.model.toJSON()));
       this.renderTabWidget(this.$(".js-tab-widget"));
-      EventBus.trigger("wizard:hideSpinner");
       return this;
     },
 

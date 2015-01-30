@@ -5,12 +5,12 @@ define([
   "jquery",
   "underscore",
   "backbone",
-  "tireFinder/views/base-view",
-  "tireFinder/utils/finder-eventbus",
-  "tireFinder/utils/finder-state",
-  "tireFinder/utils/tab-widget",
-  "json!tireFinder/utils/car-years.json",
-  "hbs!tireFinder/templates/car-year"
+  "common/product/views/base/base-view",
+  "common/finder/utils/finder-eventbus",
+  "common/finder/utils/finder-state",
+  "common/finder/utils/tab-widget",
+  "json!common/finder/utils/car-years.json",
+  "hbs!common/finder/templates/car-year"
 ], function (
   $,
   _,

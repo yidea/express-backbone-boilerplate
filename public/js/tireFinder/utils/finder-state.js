@@ -8,7 +8,6 @@ define(["jquery", "backbone", "jquery.cookie"], function ($, Backbone) {
   var FinderSate = Backbone.Model.extend({
     initialize: function () {
       this.fetch();
-      //this.on("change", this.save, this);
     },
 
     fetch: function () {

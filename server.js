@@ -40,9 +40,11 @@ app.engine("handlebars", hbs.engine);
 
 // Express routes
 var routerApp = require("./routes/r-app"),
-  routerApi = require("./routes/r-api");
+  routerApi = require("./routes/r-api"),
+  routerSearch = require("./routes/r-search");
 app.use("/", routerApp); // webapp
 app.use("/api", cors(), routerApi); // api
+app.use("/search", routerSearch); // mock search
 
 // 404 custom error handler
 app.use(function (req, res) { //handle all unhandled requests, put at bottom

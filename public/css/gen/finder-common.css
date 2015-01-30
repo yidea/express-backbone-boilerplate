@@ -1,0 +1,17 @@
+/* ==========================================================================
+   Finder Common
+   ========================================================================== */
+.finder-modal .modal {
+  width: 750px;
+  height: 575px;
+  background-color: $blue-light;
+}
+.finder-modal .finder-header {
+  height: $finder-title-height;
+}
+.finder-modal .finder-breadcrumb {
+  height: 54px;
+}
+.finder-modal .finder-footer {
+  height: 80px;
+}

@@ -5,10 +5,10 @@ define([
   "jquery",
   "underscore",
   "backbone",
-  "tireFinder/views/base-view",
-  "tireFinder/utils/finder-eventbus",
-  "tireFinder/utils/finder-state",
-  "hbs!tireFinder/templates/car-model"
+  "common/product/views/base/base-view",
+  "common/finder/utils/finder-eventbus",
+  "common/finder/utils/finder-state",
+  "hbs!common/finder/templates/car-model"
 ], function ($, _, Backbone, BaseView, EventBus, AppState, tmpl) {
 
   return BaseView.extend({

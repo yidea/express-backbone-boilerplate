@@ -1,5 +1,5 @@
 /**
- * Config
+ * Requirejs Config
  */
 (function () {
   require.config({
@@ -34,8 +34,9 @@
       }
     },
     paths: {
-      tireFinder: "js/tireFinder",
+      //project specific
       "common/finder": "js/tireFinder",
+      "common/product": "js/tireFinder",
 
       underscore: "lib/underscore/underscore",
       backbone: "lib/backbone/backbone",

@@ -1,10 +1,10 @@
 /**
  * Car Make Model
  */
-define(["backbone", "tireFinder/utils/finder-state"], function (Backbone, AppState) {
+define(["backbone", "common/finder/utils/finder-state"], function (Backbone, AppState) {
 
   return Backbone.Model.extend({
-    urlRoot: "/api/finder?",
+    urlRoot: "/search/finder-getnext/tire?",
 
     yearParam: "s1",
 

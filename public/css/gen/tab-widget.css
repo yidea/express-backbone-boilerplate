@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Tab Widget
+   ========================================================================== */
+/*.tab-nav {*/
+/*clearfix();*/
+/*padding: 0;*/
+/*margin: 0*/
+/*list-style: none;*/
+/*> li {*/
+/*float: left;*/
+/*&.active > a {*/
+/*background-color: $blue-active;*/
+/*color: $white;*/
+/*}*/
+/*> a {*/
+/*display: block;*/
+/*padding: 10px 5px;*/
+/*border: 1px solid $grey-light;*/
+/*border-radius: 4px;*/
+/*}*/
+/*}*/
+/*}*/
+/*.tab-content {*/
+/*> .tab-content-pane {*/
+/*display: none;*/
+/*}*/
+/*> .active {*/
+/*display: block;*/
+/*}*/
+/*}*/
+.tab-nav > li {
+  float: left;
+  width: 25%;
+  height: 44px;
+}
+.tab-nav > li.active > a,
+.tab-nav > li:hover > a {
+  color: #222;
+  border-bottom: 5px solid #007dc6;
+}
+.tab-nav > li > a {
+  display: block;
+  height: 44px;
+  line-height: 44px;
+  font-family: $myriad;
+  margin: 0 25px;
+  font-size: 16px;
+  text-align: center;
+  color: #007dc6;
+}
+.tab-content-pane {
+  display: none;
+}
+.tab-content-pane.active {
+  display: block;
+}
+.tab-content-pane .heading-e {
+  margin: 0;
+}
+.tab-content-pane .variants {
+  margin: 20px 10px 20px 13px;
+}
+.tab-content-pane .variant {
+  width: 94px;
+  height: 38px;
+  margin: 0;
+  border-radius: 0;
+  text-align: center;
+}
+.tab-content {
+  min-height: 300px;
+  height: auto;
+  border-bottom: 1px solid $finder-border-color;
+}
+.tab-nav {
+/*width: 496px;*/
+/*height: 44px;*/
+/*margin-top: 0;*/
+/*padding: 0 15px;*/
+/*background-color: white;*/
+  border-bottom: 1px solid $finder-border-color;
+}
