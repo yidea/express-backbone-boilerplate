@@ -1,0 +1,37 @@
+/* ==========================================================================
+   Tab Widget
+   ========================================================================== */
+
+.tab-nav {
+  clearfix();
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  > li {
+    float: left;
+
+    &.active > a {}
+
+    > a {
+      position: relative;
+      display: block;
+      padding: 10px;
+
+      outline: none;
+      text-align: center;
+    }
+  }
+}
+
+.tab-content {
+  > .tab-content-pane {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+}

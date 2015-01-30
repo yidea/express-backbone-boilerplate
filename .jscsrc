@@ -16,5 +16,24 @@
   "disallowMultipleLineBreaks": true,
   "disallowKeywordsOnNewLine": ["else"],
   "requireLineFeedAtFileEnd": true,
-  "excludeFiles": []
+  "excludeFiles": [],
+  "requireSpacesInNamedFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "requireSpacesInAnonymousFunctionExpression": {
+    "beforeOpeningRoundBrace": true,
+    "beforeOpeningCurlyBrace": true
+  },
+  "disallowTrailingWhitespace": true
+  // TODO: Update JSCS and add more checks.
+  // https://jira.walmart.com/browse/USFEATLAS-307
+  //  "disallowTrailingComma": true
+  //  "requireSpaceAfterLineComment": true,
+  //  "disallowSpacesInsideArrayBrackets": true,
+  //  "disallowImplicitTypeConversion": ["string"]
+  //  "disallowSpacesInsideParentheses": true
+  //  "validateJSDoc": {
+  //    "checkParamNames": true,
+  //    "requireParamTypes": true
+  //  }
 }

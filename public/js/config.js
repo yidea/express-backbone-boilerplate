@@ -1,12 +1,24 @@
-/*
+/**
  * Config
  */
 (function () {
   require.config({
     baseUrl: "/",
     waitSeconds: 30, //timeout in 30s for slow network
+    hbs: {
+      helpers: true,
+      i18n: false,
+      helperPathCallback: function (name) {
+        return "/js//helpers/" + name + ".js";
+      }
+
+    },
     shim: {
       jquery: {
+        exports: "$"
+      },
+      "jquery.cookie": {
+        deps: ["jquery"],
         exports: "$"
       },
       underscore: {
@@ -19,29 +31,23 @@
       bootstrap: {
         deps: ["jquery"],
         exports: "$"
-      },
-      Handlebars: {
-        exports: "Handlebars"
       }
     },
     paths: {
-      views: "js/views",
-      collections: "js/collections",
-      models: "js/models",
-      routers: "js/routers",
-      templates: "js/templates",
-      spec: "js/spec",
+      tireFinder: "js/tireFinder",
+      "common/finder": "js/tireFinder",
 
       underscore: "lib/underscore/underscore",
       backbone: "lib/backbone/backbone",
       bootstrap: "lib/bootstrap/dist/js/bootstrap",
-      Handlebars: "lib/handlebars/handlebars",
       "handlebars.runtime": "lib/handlebars/handlebars.runtime",
       modernizr: "lib/modernizr/modernizr",
       requirejs: "lib/requirejs/require",
       text: "lib/requirejs-text/text",
+      hbs: "lib/hbs/hbs",
+      json: "js/helpers/json",
       jquery: "lib/jquery/dist/jquery.min",
-      "hbs.helper": "js/helper/hbshelper"
+      "jquery.cookie": "lib/jquery.cookie/jquery.cookie"
     }
   });
 }).call(this);

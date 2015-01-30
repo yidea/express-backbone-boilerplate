@@ -1,0 +1,92 @@
+/* ==========================================================================
+   Finder Common
+   ========================================================================== */
+$finder-width = 750px;
+$finder-height = 578px;
+$finder-modal-border = 4px;
+$finder-modal-width = $finder-width + 2 * $finder-modal-border;
+$finder-modal-height = $finder-height + 2 * $finder-modal-border;
+$finder-header-height = 80px;
+$finder-breadcrumb-height = 54px;
+$finder-footer-height = $finder-header-height;
+$finder-body-height = $finder-height - $finder-header-height - $finder-breadcrumb-height - $finder-footer-height;
+
+.finder-modal {
+  .modal {
+    width: $finder-modal-width;
+    height: $finder-modal-height;
+  }
+
+  .finder {
+    width: $finder-width;
+    height: $finder-height;
+
+    background-color: $blue-light;
+    border-radius: 10px;
+  }
+
+  .finder-header {
+    margin: 0;
+    height: $finder-header-height;
+    border-bottom: 1px solid $grey-cool;
+
+    background-color: $white;
+    border-radius: 10px 10px 0 0;
+    line-height: @height;
+    text-align: center;
+  }
+
+  .finder-breadcrumb {
+    display: table;
+    margin: 0 auto;
+    height: $finder-breadcrumb-height;
+
+    .tab-nav {
+      min-width: 250px;
+    }
+
+    a {
+      padding: 12px 0;
+
+      color: $grey-light;
+
+      &:first-child {
+        margin-right: 45px;
+      }
+    }
+
+    .paginator-btn {
+      margin-top: -3px;
+      width: 30px;
+      height: @width;
+
+      background-color: $grey-light;
+      color: $white;
+
+      &:hover,
+      &:focus {
+        border-color: $grey-light;
+      }
+    }
+
+    .active {
+      a {
+        color: $black;
+      }
+
+      .paginator-btn {
+        background-color: $orange;
+      }
+    }
+  }
+
+  .finder-body {
+    height: $finder-body-height;
+    border-top: 1px solid $grey-cool;
+  }
+
+  .finder-footer {
+    height: $finder-footer-height;
+    border-top: 1px solid $grey-cool;
+  }
+}

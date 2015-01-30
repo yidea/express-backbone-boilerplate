@@ -1,0 +1,23 @@
+<div class="tab-widget js-tab-widget">
+  <ul class="tab-nav">
+    {{#each this}}
+      <li{{#unless @index}} class="active"{{/unless}}><a href="#year-{{@index}}">{{decade}}</a></li>
+    {{/each}}
+  </ul>
+  <div class="tab-content">
+    {{#each this}}
+      <div class="tab-content-pane {{#unless @index}}active{{/unless}}" id="year-{{@index}}" data-pane-id="{{@index}}">
+        <div class="variants">
+          {{#slices years size=5}}
+            <div class="variants-group">
+              {{#each this}}
+                <input type="radio" name="year-radio" id="year-{{this}}">
+                <label class="variant" for="year-{{this}}">{{this}}</label>
+              {{/each}}
+            </div>
+          {{/slices}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

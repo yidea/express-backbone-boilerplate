@@ -5,7 +5,7 @@ var express = require("express"),
   router = express.Router();
 
 router.get("/", function (req, res) {
-  res.json({ msg: "test" });
+  res.json({msg: "test"});
 });
 
 router.get("/ip", function (req, res) {
@@ -36,7 +36,7 @@ router.route("/product")
     product.title = req.body.title;
     product.save(function (err) {
       if (err) return res.send(err);
-      res.json({ msg: "Created successfully"});
+      res.json({msg: "Created successfully"});
     });
   });
 
@@ -55,6 +55,74 @@ router.route("/product/:id")
       if (err) return res.send(err);
       product.title = req.body.title;
     });
+  });
+
+//tirefinder
+router.route("/finder")
+  .get(function (req, res) {
+    if (req.query.s1 === "2015") {
+      res.json(
+        {
+          "value": {
+            "name": "All 2015 vehicles",
+            "type": "all makes",
+            "values": [
+              {
+                "name": "A-D",
+                "type": "group",
+                "values": [
+                  {"name": "A", values: ["Acura", "Alfa Romeo", "Aston Martin", "Audi", "Avanti"]},
+                  {"name": "B", values: ["BMW", "Bentley", "Buick"]},
+                  {"name": "C", values: ["Cadillac", "Chevrolet", "Chrysler"]},
+                  {"name": "D", values: ["DAF"]}
+                ]
+              },
+              {
+                "name": "E-H",
+                "type": "group",
+                "values": [
+                  {"name": "E", values: []},
+                  {"name": "F", values: ["Ford"]},
+                  {"name": "G", values: []},
+                  {"name": "H", values: []}
+                ]
+              }
+            ]
+          }
+        }
+      );
+    } else {
+      res.json({
+        "value": {
+          "name": "All 2014 vehicles",
+          "type": "all makes",
+          "values": [
+            {
+              "name": "A-D",
+              "type": "group",
+              "values": [
+                {"name": "A", values: []},
+                {"name": "B", values: ["Buick"]},
+                {"name": "C", values: ["Cadillac", "Chevrolet"]},
+                {"name": "D", values: []}
+              ]
+            },
+            {
+              "name": "E-H",
+              "type": "group",
+              "values": [
+                {"name": "E", values: []},
+                {"name": "F", values: ["Ford"]},
+                {"name": "G", values: []},
+                {"name": "H", values: []}
+              ]
+            }
+          ]
+        }
+      });
+
+    }
+
   });
 
 module.exports = router;

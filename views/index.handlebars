@@ -1,12 +1,20 @@
 {{#extend "stylesheets"}}
-  <link rel="stylesheet" href="/css/index.css"/>
+  <link rel="stylesheet" href="/css/gen/index.css"/>
 {{/extend}}
 
 <h4>{{title}}</h4>
-<div>
-  {{#each data}}
-    <p>{{uid}}, {{name}}</p>
-  {{/each}}
+
+<div class="finder-modal js-finder-modal">
+  <div class="modal-backdrop active js-modal-backdrop"></div>
+  <div class="modal fixed active js-modal-car js-modal">
+    <button class="modal-close js-modal-close" type="button">
+      <i class="wmicon wmicon-remove"></i>
+      <span class="visuallyhidden">Close</span>
+    </button>
+    <div class="module">
+      {{> find-by-car}}
+    </div>
+  </div>
 </div>
 
 {{#extend "scripts"}}

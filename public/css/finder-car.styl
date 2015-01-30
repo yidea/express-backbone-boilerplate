@@ -1,0 +1,174 @@
+/* ==========================================================================
+   Finder Car
+   ========================================================================== */
+
+$finder-width = 750px;
+$finder-height = 578px;
+$finder-body-height = 364px;
+$finder-tab-nav-height = 44px;
+$finder-tab-content-height = $finder-body-height - $finder-tab-nav-height;
+$finder-body-main-width = 509px;
+$finder-body-sidebar-width = $finder-width - $finder-body-main-width;
+
+// Sidebar
+.finder-body-sidebar {
+  margin-right: 0;
+  width: $finder-body-sidebar-width;
+
+  li {
+    position: relative;
+    border-top: 1px solid $grey-cool;
+    border-right: 1px solid $grey-cool;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  .btn {
+    display: block;
+    padding: 0 20px;
+    height: 91px;
+    border: none;
+
+    color: $black;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: @height;
+    text-align: left;
+
+    &.disabled {
+      color: $blue;
+
+      + .wmicon-angle-right {
+        color: $white;
+      }
+    }
+  }
+
+  .wmicon-angle-right {
+    position: absolute;
+    right: 20px;
+    top: 40px;
+
+    color: $blue;
+  }
+
+  .active {
+    .btn {
+      background-color: $blue-tertiary;
+      border-radius: 0;
+      color: $black;
+    }
+
+    .wmicon-angle-right {
+      color: $black;
+    }
+  }
+}
+
+// Body
+.finder-body-main {
+  width: $finder-body-main-width;
+
+  .tab-nav {
+    background-color: $white;
+
+    li {
+      margin-left: 46px;
+
+      &:first-child {
+        margin-left: 80px;
+      }
+    }
+
+    a {
+      height: $finder-tab-nav-height;
+      width: 52px;
+      padding: 14px 0;
+
+      color: $blue;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .active {
+      a {
+        color: $black;
+
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 5px;
+
+          background-color: $blue;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    border-top: 1px solid $grey-cool;
+
+    .heading-e {
+      margin-top: 0;
+    }
+
+    .variants {
+      margin: 10px 0 20px;
+
+      .heading-f {
+        margin: 0;
+      }
+    }
+
+    .variants-group:not(:first-child) {
+      margin-top: -1px;
+    }
+
+    .variant {
+      position: relative;
+      margin: 0;
+      width: 93px;
+      height: 38px;
+
+      border-radius: 0;
+
+      & ~ .variant {
+        margin-left: -1px;
+      }
+
+      &:hover {
+        z-index: 1;
+      }
+    }
+
+    .tab-content-pane {
+      padding: 20px 11px;
+      height: $finder-tab-content-height;
+
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+  }
+
+  .finder-car-content {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+}
+
+// finder-car-make specific
+.finder-car-make {
+  .tab-content {
+    .variant {
+      width: 117px;
+    }
+  }
+}

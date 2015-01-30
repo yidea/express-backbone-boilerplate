@@ -31,7 +31,8 @@ if ("development" === env) {
 var hbs = exphbs.create({
   extname: ".handlebars",
   defaultLayout: "main.handlebars",
-  helpers: hbsHelper
+  helpers: hbsHelper,
+  partialsDir: ["views/partials"]
 });
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
