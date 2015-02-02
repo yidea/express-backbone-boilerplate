@@ -22,7 +22,6 @@ define([
 
     render: function () {
       this.$el.append(this.template());
-
       this.$content = this.$(".js-finder-car-model");
       return this;
     },
