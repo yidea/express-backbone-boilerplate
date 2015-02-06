@@ -13,7 +13,10 @@ define([
   "common/finder/views/car-year-view",
   "common/finder/views/car-make-view",
   "common/finder/views/car-model-view",
-  "common/finder/models/car-make-model"
+  "common/finder/views/car-submodel-view",
+  "common/finder/models/car-make-model",
+  "common/finder/models/car-model-model",
+  "common/finder/models/car-submodel-model"
 ], function (
   $,
   _,
@@ -26,14 +29,17 @@ define([
   CarYearView,
   CarMakeView,
   CarModelView,
-  CarMakeModel
+  CarSubmodelView,
+  CarMakeModel,
+  CarModelModel,
+  CarSubodelModel
   ) {
 
   var WIZARD = [
     { name: "year", title: "The car year", view: CarYearView },
     { name: "make", title: "The car make", view: CarMakeView, model: CarMakeModel},
-    { name: "model", title: "The car model", view: CarModelView },
-    { name: "submodel", title: "The car submodel", view: null }
+    { name: "model", title: "The car model", view: CarModelView, model: CarModelModel },
+    { name: "submodel", title: "The car submodel", view: CarSubmodelView, model: CarSubodelModel }
   ];
 
   return BaseView.extend(_.extend(FinderModalMixin, {

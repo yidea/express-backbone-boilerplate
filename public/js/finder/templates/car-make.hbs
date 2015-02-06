@@ -1,0 +1,32 @@
+<div class="tab-widget js-tab-widget">
+  <ul class="tab-nav">
+    {{#each this.value.values}}
+      <li{{#unless @index}} class="active"{{/unless}}>
+        <a href="#make-{{@index}}">{{this.name}}</a>
+      </li>
+    {{/each}}
+  </ul>
+  <div class="tab-content">
+    {{#each this.value.values}}
+      <div class="tab-content-pane {{#unless @index}}active{{/unless}}" id="make-{{@index}}" data-pane-id="{{@index}}">
+        {{#each this.values}}
+          <h3 class="heading-e">{{this.name}}:</h3>
+          <div class="variants variants-4">
+            {{#if this.values}}
+              {{#slices this.values size=4}}
+                <div class="variants-group">
+                  {{#each this}}
+                    <input type="radio" name="make-radio" id="make-{{this}}">
+                    <label class="variant" for="make-{{this}}">{{this}}</label>
+                  {{/each}}
+                </div>
+              {{/slices}}
+            {{else}}
+              <h6 class="heading-f">None</h6>
+            {{/if}}
+          </div>
+        {{/each}}
+      </div>
+    {{/each}}
+  </div>
+</div>

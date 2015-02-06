@@ -1,0 +1,8 @@
+{
+  "framework": "mocha",
+  "src_files": [
+    "public/test/spec/*.spec.js"
+  ],
+  "test_page": "public/test/testem.mustache",
+  "launch_in_dev": ["chrome"]
+}

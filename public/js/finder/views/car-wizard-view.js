@@ -49,7 +49,7 @@ define([
       this.listenTo(EventBus, "wizard:showSpinner", this.showSpinner);
       this.listenTo(EventBus, "wizard:hideSpinner", this.hideSpinner);
 
-      //show step0
+      //show step 0
       this.$stepContents.eq(this.currentStep).addClass("active");
       this.$stepNavs.eq(this.currentStep).addClass("active");
     },
@@ -57,7 +57,7 @@ define([
     nextStep: function (data) {
       data = data || {};
       var nextStep = this.currentStep + 1;
-      if (nextStep >= this.steps.length - 1) { return; }
+      if (nextStep > this.steps.length - 1) { return; }
       this.$stepContents.eq(this.currentStep).removeClass("active");
       this.$stepContents.eq(nextStep).addClass("active");
       this.renderStepNav(nextStep, data.selected);

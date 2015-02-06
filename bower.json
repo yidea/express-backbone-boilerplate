@@ -16,10 +16,10 @@
   },
   "devDependencies": {
     "blanket": "1.1.5",
-    "chai": "1.9.1",
-    "chai-jq": "0.0.7",
+    "chai": "1.9.2",
+    "chai-jq": "0.0.8",
     "mocha": "1.13.0",
-    "sinon": "1.7.3",
-    "sinon-chai": "2.4.0"
+    "sinonjs": "1.7.3",
+    "sinon-chai": "2.6.0"
   }
 }

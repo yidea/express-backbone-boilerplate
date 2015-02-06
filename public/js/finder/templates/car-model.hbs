@@ -1,0 +1,19 @@
+<div class="finder-car-content-inner">
+  <h3 class="heading-e">All car models:</h3>
+  <div class="variants variants-4">
+    {{#if this.value.values}}
+      {{#slices this.value.values size=4}}
+        <div class="variants-group">
+          {{#each this}}
+            <input type="radio" name="model-radio" id="model-{{this}}">
+            <label class="variant variant-centered" for="model-{{this}}">
+              <span>{{this}}</span>
+            </label>
+          {{/each}}
+        </div>
+      {{/slices}}
+    {{else}}
+      <h6 class="heading-f">No data found. Only 2015>Honda has data for now</h6>
+    {{/if}}
+  </div>
+</div>

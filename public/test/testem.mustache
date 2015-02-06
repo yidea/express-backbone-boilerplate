@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+  <title>Test'em</title>
+  <link rel="stylesheet" href="/testem/mocha.css">
+  {{#styles}}
+    <link rel="stylesheet" href="{{.}}">{{/styles}}
+
+  <script src="/testem/mocha.js"></script>
+  <script src="/testem/chai.js"></script>
+  <script src="/public/lib/chai-jq/chai-jq.js"></script>
+  <script src="/public/lib/sinonjs/sinon.js"></script>
+  <script src="/public/lib/sinon-chai/lib/sinon-chai.js"></script>
+  <script>
+    window.expect = chai.expect;
+    mocha.setup('bdd');
+  </script>
+  <script src="/public/lib/requirejs/require.js"></script>
+  <script>
+    (function () {
+      require.config({
+        baseUrl: "/",
+        shim: {
+          jquery: {
+            exports: "$"
+          },
+          underscore: {
+            exports: "_"
+          },
+          backbone: {
+            deps: ["underscore","jquery"],
+            exports: "Backbone"
+          }
+        },
+        paths: {
+          //project specific
+          "common/finder": "/public/js/finder",
+          "common/product": "/public/js/finder",
+
+          underscore: "/public/lib/underscore/underscore",
+          backbone: "/public/lib/backbone/backbone",
+          jquery: "/public/lib/jquery/dist/jquery.min",
+          "jquery.cookie": "/public/lib/jquery.cookie/jquery.cookie",
+          requirejs: "/public/lib/requirejs/require",
+          hbs: "/public/lib/hbs/hbs",
+          text: "/public/lib/requirejs-text/text",
+          json: "/public/js/helpers/json"
+        }
+      })
+    })();
+  </script>
+
+  <!-- Code Coverage lib-->
+  <!--<script src="/lib/blanket/dist/qunit/blanket.min.js" data-cover-adapter="/lib/blanket/src/adapters/mocha-blanket.js" data-cover-only="scripts/src"></script>-->
+</head>
+<body>
+  <div id="blanket-main"></div>
+  <div id="mocha" style="margin:0;"></div>
+  <div id="fixtures" style="display: none;"></div>
+  <div id="fixtures-visible" style="position: absolute; bottom: 0; left: -999em"></div>
+
+  <script>
+    var files = [];
+    {{#serve_files}}files.push("/{{src}}");{{/serve_files}}
+    require(files, function () {
+      mocha.run();
+    });
+  </script>
+</body>
+</html>

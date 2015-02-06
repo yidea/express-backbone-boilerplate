@@ -35,8 +35,8 @@
     },
     paths: {
       //project specific
-      "common/finder": "js/tireFinder",
-      "common/product": "js/tireFinder",
+      "common/finder": "js/finder",
+      "common/product": "js/finder",
 
       underscore: "lib/underscore/underscore",
       backbone: "lib/backbone/backbone",

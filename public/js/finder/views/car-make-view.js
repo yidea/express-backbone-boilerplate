@@ -41,7 +41,12 @@ define([
     },
 
     fetchModel: function () {
-      this.model.fetch({ reset: true });
+      this.model.fetch({
+        reset: true,
+        data: {
+          s1: AppState.get("year")
+        }
+      });
     },
 
     showSpinner: function () {

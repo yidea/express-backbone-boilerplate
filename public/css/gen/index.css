@@ -86,6 +86,10 @@
   height: 364px;
   border-top: 1px solid #c2cfd6;
 }
+.finder-modal .finder-body .heading-e,
+.finder-modal .finder-body .heading-f {
+  margin-top: 0;
+}
 .finder-modal .finder-footer {
   height: 80px;
   border-top: 1px solid #c2cfd6;
@@ -168,36 +172,37 @@
 .finder-body-main .tab-content {
   border-top: 1px solid #c2cfd6;
 }
-.finder-body-main .tab-content .heading-e {
-  margin-top: 0;
-}
-.finder-body-main .tab-content .variants {
-  margin: 10px 0 20px;
-}
-.finder-body-main .tab-content .variants .heading-f {
-  margin: 0;
-}
-.finder-body-main .tab-content .variants-group:not(:first-child) {
-  margin-top: -1px;
-}
-.finder-body-main .tab-content .variant {
-  position: relative;
-  margin: 0;
-  width: 93px;
-  height: 38px;
-  border-radius: 0;
-}
-.finder-body-main .tab-content .variant ~ .variant {
-  margin-left: -1px;
-}
-.finder-body-main .tab-content .variant:hover {
-  z-index: 1;
-}
 .finder-body-main .tab-content .tab-content-pane {
   padding: 20px 11px;
   height: 320px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: auto;
+}
+.finder-body-main .variants {
+  margin: 10px 0 20px;
+}
+.finder-body-main .variants.variants-4 .variant {
+  width: 117px;
+}
+.finder-body-main .variants.variants-5 .variant {
+  width: 93px;
+}
+.finder-body-main .variants .variants-group {
+  position: relative;
+}
+.finder-body-main .variants .variants-group:not(:first-child) {
+  top: -1px;
+}
+.finder-body-main .variants .variant {
+  position: relative;
+  margin: 0;
+  height: 38px;
+  border-radius: 0;
+}
+.finder-body-main .variants .variant ~ .variant {
+  margin-left: -1px;
+}
+.finder-body-main .variants .variant:hover {
+  z-index: 1;
 }
 .finder-body-main .finder-car-content {
   display: none;
@@ -205,6 +210,40 @@
 .finder-body-main .finder-car-content.active {
   display: block;
 }
-.finder-car-make .tab-content .variant {
-  width: 117px;
+.finder-body-main .finder-car-model,
+.finder-body-main .finder-car-submodel {
+  padding: 20px 11px;
+  height: 364px;
+  overflow: auto;
+}
+.finder-body-main .finder-car-model .variants-group,
+.finder-body-main .finder-car-submodel .variants-group {
+  *zoom: 1;
+}
+.finder-body-main .finder-car-model .variants-group:before,
+.finder-body-main .finder-car-submodel .variants-group:before,
+.finder-body-main .finder-car-model .variants-group:after,
+.finder-body-main .finder-car-submodel .variants-group:after {
+  content: "";
+  display: table;
+}
+.finder-body-main .finder-car-model .variants-group:after,
+.finder-body-main .finder-car-submodel .variants-group:after {
+  clear: both;
+}
+.finder-body-main .finder-car-model .variant,
+.finder-body-main .finder-car-submodel .variant {
+  float: left;
+  padding: 15px 10px;
+  min-height: 72px;
+  line-height: 1;
+}
+.finder-body-main .finder-car-model .variant-centered,
+.finder-body-main .finder-car-submodel .variant-centered {
+  display: table;
+}
+.finder-body-main .finder-car-model .variant-centered span,
+.finder-body-main .finder-car-submodel .variant-centered span {
+  display: table-cell;
+  vertical-align: middle;
 }

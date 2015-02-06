@@ -113,26 +113,36 @@ $finder-body-sidebar-width = $finder-width - $finder-body-main-width;
   .tab-content {
     border-top: 1px solid $grey-cool;
 
-    .heading-e {
-      margin-top: 0;
+    .tab-content-pane {
+      padding: 20px 11px;
+      height: $finder-tab-content-height;
+
+      overflow: auto;
+    }
+  }
+
+  .variants {
+    margin: 10px 0 20px;
+
+    &.variants-4 .variant {
+      width: 117px;
     }
 
-    .variants {
-      margin: 10px 0 20px;
+    &.variants-5 .variant {
+      width: 93px;
+    }
 
-      .heading-f {
-        margin: 0;
-      }
+    .variants-group {
+      position: relative;
     }
 
     .variants-group:not(:first-child) {
-      margin-top: -1px;
+      top: -1px;
     }
 
     .variant {
       position: relative;
       margin: 0;
-      width: 93px;
       height: 38px;
 
       border-radius: 0;
@@ -145,14 +155,6 @@ $finder-body-sidebar-width = $finder-width - $finder-body-main-width;
         z-index: 1;
       }
     }
-
-    .tab-content-pane {
-      padding: 20px 11px;
-      height: $finder-tab-content-height;
-
-      overflow-x: hidden;
-      overflow-y: scroll;
-    }
   }
 
   .finder-car-content {
@@ -162,13 +164,33 @@ $finder-body-sidebar-width = $finder-width - $finder-body-main-width;
       display: block;
     }
   }
-}
 
-// finder-car-make specific
-.finder-car-make {
-  .tab-content {
+  .finder-car-model, .finder-car-submodel {
+    padding: 20px 11px;
+    height: $finder-body-height;
+
+    overflow: auto;
+
+    .variants-group {
+      clearfix();
+    }
+
     .variant {
-      width: 117px;
+      float: left;
+      padding: 15px 10px;
+      min-height: 72px;
+
+      line-height: 1;
+    }
+
+    .variant-centered {
+      display: table;
+
+      span {
+        display: table-cell;
+
+        vertical-align: middle;
+      }
     }
   }
 }
