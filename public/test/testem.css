@@ -1,0 +1,10 @@
+#blanket-main {
+  margin-top: 20px !important;
+}
+#blanket-main a, #blanket-main div{
+  font-size: 14px;
+}
+
+#mocha ul:first-child{
+  display: none;
+}

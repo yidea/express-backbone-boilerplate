@@ -13,15 +13,25 @@
   > li {
     float: left;
 
-    &.active > a {}
+    &.disabled a {
+      cursor: default;
+      opacity: .7;
+    }
 
     > a {
       position: relative;
+
       display: block;
       padding: 10px;
 
       outline: none;
       text-align: center;
+    }
+  }
+
+  &.tab-nav-vertical {
+    > li {
+      float: none;
     }
   }
 }

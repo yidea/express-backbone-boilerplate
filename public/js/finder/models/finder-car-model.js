@@ -1,5 +1,5 @@
 /**
- * Car Make Model
+ * Finder Car Model
  */
 define(["backbone"], function (Backbone) {
 

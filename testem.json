@@ -1,5 +1,5 @@
 {
-  "framework": "mocha",
+  "framework": "mocha+chai",
   "src_files": [
     "public/test/spec/*.spec.js"
   ],

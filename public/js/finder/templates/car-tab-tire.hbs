@@ -1,0 +1,45 @@
+<div class="finder-content">
+  <div class="tire-query">
+    <span class="tire-query-prefix">Your tires for:</span>
+    <b class="tire-query-info">{{queryInfo.year}} {{queryInfo.make}} {{queryInfo.model}} {{queryInfo.submodel}}</b>
+  </div>
+  <div class="tire-select">
+    You car tire size
+    {{! F=R single layout}}
+    {{#ifequal this.value.type "F"}}
+      {{#each this.value.values}}
+        {{#ifequal this.name "front"}}
+          {{#each this.values}}
+            {{#ifequal this.name "standard"}}
+              Standard
+              <ul class="block-list">
+                {{#each this.values}}
+                  <li class="radio-option">
+                    <input type="radio" checked="" name="radio-tire" id="radio-tire-{{@index}}">
+                    <label for="radio-tire-{{@index}}">{{this.tireSize}}</label>
+                  </li>
+                {{/each}}
+              </ul>
+            {{/ifequal}}
+
+            {{#ifequal this.name "optional"}}
+              Optional
+              <ul class="block-list">
+                {{#each this.values}}
+                  <li class="radio-option">
+                    <input type="radio" name="radio-tire" id="radio-tire-optional-{{@index}}">
+                    <label for="radio-tire-optional-{{@index}}">{{this.tireSize}}</label>
+                  </li>
+                {{/each}}
+              </ul>
+            {{/ifequal}}
+          {{/each}}
+        {{/ifequal}}
+      {{/each}}
+    {{/ifequal}}
+  </div>
+</div>
+<div class="finder-control">
+  <button class="btn btn-inverse btn-finder-back js-btn-finder-back" type="button">Back: Your vehicle</button>
+  <button class="btn btn-primary pull-right btn-finder-search js-btn-finder-search" type="button">See tires</button>
+</div>

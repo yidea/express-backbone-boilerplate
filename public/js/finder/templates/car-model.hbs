@@ -5,15 +5,15 @@
       {{#slices this.value.values size=4}}
         <div class="variants-group">
           {{#each this}}
-            <input type="radio" name="model-radio" id="model-{{this}}">
-            <label class="variant variant-centered" for="model-{{this}}">
-              <span>{{this}}</span>
-            </label>
+              <input type="radio" name="{{#if ../../queryInfo.model}}sub{{/if}}model-radio" id="{{#if ../../queryInfo.model}}sub{{/if}}model-{{this}}">
+              <label class="variant variant-centered" for="{{#if ../../queryInfo.model}}sub{{/if}}model-{{this}}">
+                <span>{{this}}</span>
+              </label>
           {{/each}}
         </div>
       {{/slices}}
     {{else}}
-      <h6 class="heading-f">No data found. Only 2015>Honda has data for now</h6>
+      <h6 class="heading-f">No data found.</h6>
     {{/if}}
   </div>
 </div>

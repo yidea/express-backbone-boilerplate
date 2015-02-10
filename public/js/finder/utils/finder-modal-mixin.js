@@ -3,8 +3,10 @@
  */
 define([
   "jquery",
-  "underscore"
-], function ($, _) {
+  "underscore",
+  "common/finder/utils/finder-eventbus",
+  "common/finder/utils/tab-widget"
+], function ($, _, EventBus, TabWidget) {
 
   return {
     initModal: function () {
@@ -33,6 +35,28 @@ define([
     hideModal: function () {
       this.$el.removeClass("active");
       this.$el.parent().find(".js-modal-backdrop").removeClass("active");
+    },
+
+    renderTabWidget: function ($tabWidget) {
+      TabWidget.init($tabWidget);
+    },
+
+    showSpinner: function () {
+      EventBus.trigger("wizard:showSpinner");
+    },
+
+    hideSpinner: function () {
+      _.delay(function () {
+        EventBus.trigger("wizard:hideSpinner");
+      }, 250);
+    },
+
+    slugify: function (str) {
+      if (!str) { return; }
+      return str
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, "");
     }
   };
 

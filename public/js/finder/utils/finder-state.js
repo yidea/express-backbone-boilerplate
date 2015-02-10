@@ -6,10 +6,6 @@ define(["jquery", "backbone", "jquery.cookie"], function ($, Backbone) {
     TIRE_FINDER_EXPIRE = 30;
 
   var FinderSate = Backbone.Model.extend({
-    initialize: function () {
-      this.fetch();
-    },
-
     fetch: function () {
       var finderCookie = $.cookie(TIRE_FINDER_KEY),
         settings;

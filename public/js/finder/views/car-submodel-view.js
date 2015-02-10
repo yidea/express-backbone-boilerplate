@@ -5,45 +5,69 @@ define([
   "jquery",
   "underscore",
   "backbone",
-  "common/product/views/base/base-view",
+  "common/product/views/base/finder-base-view",
   "common/finder/utils/finder-eventbus",
   "common/finder/utils/finder-state",
   "hbs!common/finder/templates/car-model"
 ], function ($, _, Backbone, BaseView, EventBus, AppState, tmpl) {
 
-  return BaseView.extend({
-    el: ".js-finder-body-main",
+  var KEY = "submodel";
 
+  return BaseView.extend({
     template: tmpl,
 
-    initialize: function () {
+    events: {
+      "click .variant": "_onClickSubModel"
+    },
+
+    initialize: function (options) {
+      BaseView.prototype.initialize.call(this, options);
+
+      _.bindAll(this, "restoreSelection");
       this.listenTo(AppState, "change:model", this.fetchModel);
       this.listenTo(this.model, "request", this.showSpinner);
       this.listenTo(this.model, "sync", this.render);
     },
 
     render: function () {
-      //TODO: temporary to fake loading effect
-      _.delay(function () {
-        EventBus.trigger("wizard:hideSpinner");
-      }, 300);
       this.$el.html(this.template(this.model.toJSON()));
+      this.hideSpinner();
       return this;
     },
 
-    fetchModel: function () {
-      this.model.fetch({
+    fetchModel: function (callback) {
+      var options = {
         reset: true,
         data: {
           s1: AppState.get("year"),
           s2: AppState.get("make"),
           s3: AppState.get("model")
         }
-      });
+      };
+      if (_.isFunction(callback)) { options.success = callback; }
+      this.model.fetch(options);
     },
 
-    showSpinner: function () {
-      EventBus.trigger("wizard:showSpinner");
+    restoreSelection: function () {
+      var submodel = AppState.get(KEY),
+        id;
+      if (submodel) {
+        id = "#" + KEY + "-" + submodel;
+        _.defer(_.bind(function () {
+          this.$(id).prop("checked", true);
+        }, this));
+      }
+    },
+
+    _onClickSubModel: function (ev) {
+      var $target = $(ev.currentTarget),
+        submodel = $.trim($target.text());
+      if (submodel.length) {
+        AppState.set(KEY, submodel);
+        AppState.set("complete", true);
+        AppState.save();
+      }
+      EventBus.trigger("wizard:nextStep", { "selected": submodel, "currentStep": this.step });
     }
   });
 

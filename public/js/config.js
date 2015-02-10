@@ -9,9 +9,8 @@
       helpers: true,
       i18n: false,
       helperPathCallback: function (name) {
-        return "/js//helpers/" + name + ".js";
+        return "/js/helpers/" + name + ".js";
       }
-
     },
     shim: {
       jquery: {

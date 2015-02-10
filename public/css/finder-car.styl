@@ -17,11 +17,17 @@ $finder-body-sidebar-width = $finder-width - $finder-body-main-width;
 
   li {
     position: relative;
-    border-top: 1px solid $grey-cool;
-    border-right: 1px solid $grey-cool;
 
-    &:first-child {
+    &:first-child .btn{
       border-top: none;
+    }
+  }
+
+  .disabled .btn {
+    color: $blue;
+
+    + .wmicon-angle-right {
+      color: $white;
     }
   }
 
@@ -29,21 +35,15 @@ $finder-body-sidebar-width = $finder-width - $finder-body-main-width;
     display: block;
     padding: 0 20px;
     height: 91px;
-    border: none;
+    border-color: $grey-cool;
+    border-width: 1px 1px 0 0 ;
+    border-radius: 0;
 
     color: $black;
     font-size: 18px;
     font-weight: 600;
     line-height: @height;
     text-align: left;
-
-    &.disabled {
-      color: $blue;
-
-      + .wmicon-angle-right {
-        color: $white;
-      }
-    }
   }
 
   .wmicon-angle-right {
@@ -102,6 +102,7 @@ $finder-body-sidebar-width = $finder-width - $finder-body-main-width;
           bottom: 0;
           left: 0;
           right: 0;
+
           height: 5px;
 
           background-color: $blue;
@@ -118,6 +119,7 @@ $finder-body-sidebar-width = $finder-width - $finder-body-main-width;
       height: $finder-tab-content-height;
 
       overflow: auto;
+      -webkit-overflow-scrolling: touch;
     }
   }
 
@@ -142,6 +144,7 @@ $finder-body-sidebar-width = $finder-width - $finder-body-main-width;
 
     .variant {
       position: relative;
+
       margin: 0;
       height: 38px;
 
@@ -170,6 +173,7 @@ $finder-body-sidebar-width = $finder-width - $finder-body-main-width;
     height: $finder-body-height;
 
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
 
     .variants-group {
       clearfix();
@@ -192,5 +196,42 @@ $finder-body-sidebar-width = $finder-width - $finder-body-main-width;
         vertical-align: middle;
       }
     }
+  }
+}
+
+.finder-content {
+  height: $finder-body-height;
+}
+
+// Car Wizard specific
+.finder-car-widget {
+  .finder-car-make {
+    .tab-nav li {
+      margin-left: 30px;
+
+      &:first-child {
+        margin-left: 23px;
+      }
+    }
+  }
+}
+
+// Car Tire specific
+.finder-car-tire {
+  .tire-query {
+    padding: 16px 20px;
+    height: 50px;
+    border-bottom: 1px solid $grey-cool;
+
+    background: $white;
+
+    .tire-query-prefix {
+      color: $grey-medium;
+      font-style: italic;
+    }
+  }
+
+  .tire-select {
+    padding: 20px;
   }
 }

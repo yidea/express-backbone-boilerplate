@@ -5,12 +5,13 @@ define([
   "jquery",
   "underscore",
   "backbone",
-  "common/product/views/base/base-view",
+  "common/product/views/base/finder-base-view",
   "common/finder/utils/finder-eventbus",
   "common/finder/utils/finder-state",
-  "common/finder/utils/tab-widget",
   "hbs!common/finder/templates/car-make"
-], function ($, _, Backbone, BaseView, EventBus, AppState, TabWidget, tmpl) {
+], function ($, _, Backbone, BaseView, EventBus, AppState, tmpl) {
+
+  var KEY = "make";
 
   return BaseView.extend({
     template: tmpl,
@@ -19,47 +20,54 @@ define([
       "click .variant": "_onClickMake"
     },
 
-    initialize: function () {
-      _.bindAll(this, "renderTabWidget");
+    initialize: function (options) {
+      BaseView.prototype.initialize.call(this, options);
+
       this.listenTo(AppState, "change:year", this.fetchModel);
       this.listenTo(this.model, "request", this.showSpinner);
       this.listenTo(this.model, "sync", this.render);
     },
 
     render: function () {
-      //TODO: temporary to fake loading effect
-      _.delay(function () {
-        EventBus.trigger("wizard:hideSpinner");
-      }, 300);
       this.$el.html(this.template(this.model.toJSON()));
-      this.renderTabWidget(this.$(".js-tab-widget"));
+      this.$tabWidget = this.$(".js-tab-widget");
+      this.renderTabWidget(this.$tabWidget);
+      this.hideSpinner();
       return this;
     },
 
-    renderTabWidget: function ($tabWidget) {
-      TabWidget.init($tabWidget);
-    },
-
-    fetchModel: function () {
-      this.model.fetch({
+    fetchModel: function (callback) {
+      var options = {
         reset: true,
         data: {
           s1: AppState.get("year")
         }
-      });
+      };
+      if (_.isFunction(callback)) { options.success = callback; }
+      this.model.fetch(options);
     },
 
-    showSpinner: function () {
-      EventBus.trigger("wizard:showSpinner");
+    restoreSelection: function () {
+      var make = AppState.get(KEY),
+        id;
+      if (make) {
+        id = "#" + KEY + "-" + this.slugify(make);
+        _.defer(_.bind(function () {
+          var $target = this.$(id);
+          if ($target) {
+            $target.prop("checked", true);
+            var index = $target.closest(".tab-content-pane").data("pane-id");
+            this.$tabWidget.trigger("show", [index]);
+          }
+        }, this));
+      }
     },
 
     _onClickMake: function (ev) {
       var $target = $(ev.currentTarget),
         make = $target.text();
-      if (!_.isUndefined(make)) {
-        AppState.set("make", make);
-      }
-      EventBus.trigger("wizard:nextStep", { "selected": make });
+      if (!_.isUndefined(make)) { AppState.set(KEY, make); }
+      EventBus.trigger("wizard:nextStep", { "selected": make, "currentStep": this.step });
     }
   });
 

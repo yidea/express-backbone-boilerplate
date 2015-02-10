@@ -9,7 +9,7 @@ $finder-modal-height = $finder-height + 2 * $finder-modal-border;
 $finder-header-height = 80px;
 $finder-breadcrumb-height = 54px;
 $finder-footer-height = $finder-header-height;
-$finder-body-height = $finder-height - $finder-header-height - $finder-breadcrumb-height - $finder-footer-height;
+$finder-body-height = $finder-height - $finder-header-height - $finder-breadcrumb-height;
 
 .finder-modal {
   .modal {
@@ -78,6 +78,12 @@ $finder-body-height = $finder-height - $finder-header-height - $finder-breadcrum
         background-color: $orange;
       }
     }
+
+    .completed {
+      .paginator-btn {
+        background-color: $green;
+      }
+    }
   }
 
   .finder-body {
@@ -90,7 +96,8 @@ $finder-body-height = $finder-height - $finder-header-height - $finder-breadcrum
     }
   }
 
-  .finder-footer {
+  .finder-control {
+    padding: 20px;
     height: $finder-footer-height;
     border-top: 1px solid $grey-cool;
   }

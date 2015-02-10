@@ -5,18 +5,17 @@ define([
   "jquery",
   "underscore",
   "backbone",
-  "common/product/views/base/base-view",
+  "common/product/views/base/finder-base-view",
   "common/finder/utils/finder-modal-mixin",
   "common/finder/utils/finder-eventbus",
   "common/finder/utils/finder-state",
   "common/finder/views/car-wizard-view",
+  "common/finder/views/car-tire-view",
   "common/finder/views/car-year-view",
   "common/finder/views/car-make-view",
   "common/finder/views/car-model-view",
   "common/finder/views/car-submodel-view",
-  "common/finder/models/car-make-model",
-  "common/finder/models/car-model-model",
-  "common/finder/models/car-submodel-model"
+  "common/finder/models/finder-car-model"
 ], function (
   $,
   _,
@@ -26,45 +25,74 @@ define([
   EventBus,
   AppState,
   CarWizardView,
+  CarTireView,
   CarYearView,
   CarMakeView,
   CarModelView,
   CarSubmodelView,
-  CarMakeModel,
-  CarModelModel,
-  CarSubodelModel
+  CarModel
   ) {
-
   var WIZARD = [
     { name: "year", title: "The car year", view: CarYearView },
-    { name: "make", title: "The car make", view: CarMakeView, model: CarMakeModel},
-    { name: "model", title: "The car model", view: CarModelView, model: CarModelModel },
-    { name: "submodel", title: "The car submodel", view: CarSubmodelView, model: CarSubodelModel }
+    { name: "make", title: "The car make", view: CarMakeView, model: CarModel },
+    { name: "model", title: "The car model", view: CarModelView, model: CarModel },
+    { name: "submodel", title: "The car submodel", view: CarSubmodelView, model: CarModel }
   ];
 
-  return BaseView.extend(_.extend(FinderModalMixin, {
+  return BaseView.extend({
     el: ".js-modal-car",
 
     initialize: function () {
       this.initModal();
 
-      AppState.set("inProcess", true);
+      this.listenTo(EventBus, "finder:showStep", this._showStep);
+      this.listenTo(EventBus, "finder:completeStep", this._completeStep);
+      this.listenTo(EventBus, "finder:disableStep", this._disableStep);
+      this.listenTo(EventBus, "finder:enableStep", this._enableStep);
 
-      //add subviews
       this._addSubView(new CarWizardView({ steps: WIZARD }));
+      this._addSubView(new CarTireView({ model: new CarModel() }));
+
+      this.$steps = this.$el.find(".js-tab-widget").first();
+      this.renderTabWidget(this.$steps);
+
+      //restore if year,make,model,submodel data exist
+      //a: if AppState.get("complete") === true: update Wizard title and remove disable, trigger each model instance model.fetch
+      AppState.fetch();
+      //console.log(AppState.toJSON());
+
+      if (AppState.get("complete") === true) {
+        EventBus.trigger("wizard:restore");
+      }
     },
 
-    _onBeforeUnload: function () {
-      $(this._getWindow()).on("beforeunload", function () {
-        if (AppState.get("inProcess")) {
-          return "You are setting up the Tire Finder";
-        }
-      });
+    _showStep: function (data) {
+      data = data || {};
+      if (!_.isUndefined(data.step) && _.isNumber(data.step)) {
+        this.$steps.trigger("show", [data.step]);
+      }
     },
 
-    _getWindow: function () {
-      return window;
+    _completeStep: function (data) {
+      data = data || {};
+      if (!_.isUndefined(data.step) && _.isNumber(data.step)) {
+        this.$steps.trigger("complete", [data.step]);
+      }
+    },
+
+    _disableStep: function (data) {
+      data = data || {};
+      if (!_.isUndefined(data.step) && _.isNumber(data.step)) {
+        this.$steps.trigger("disable", [data.step]);
+      }
+    },
+
+    _enableStep: function (data) {
+      data = data || {};
+      if (!_.isUndefined(data.step) && _.isNumber(data.step)) {
+        this.$steps.trigger("enable", [data.step]);
+      }
     }
-  }));
+  });
 
 });

@@ -1,8 +1,13 @@
 define([
-  "jquery",
-  "underscore",
   "common/finder/models/car-make-model"
-], function ($, _, CarMakeModel) {
+], function (CarMakeModel) {
+
+  var fakeData = {
+    value: {
+      name: "Car Models",
+      values: []
+    }
+  };
 
   describe("finder/", function () {
     describe("models/", function () {
@@ -19,7 +24,7 @@ define([
           this.server.respondWith("GET", "/search/finder-getnext/tire?s1=2015", [
             200,
             { "Content-Type": "application/json" },
-            "{\"value\":{\"name\":\"Models\",\"values\":[]}}"
+            JSON.stringify(fakeData)
           ]);
           this.model.fetch({
             data: {
@@ -28,7 +33,7 @@ define([
           });
           this.server.respond();
 
-          expect(this.model.get("value").name).to.equal("Models");
+          expect(this.model.get("value").name).to.equal("Car Models");
         }));
 
       });

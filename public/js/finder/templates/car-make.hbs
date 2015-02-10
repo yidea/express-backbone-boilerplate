@@ -16,8 +16,8 @@
               {{#slices this.values size=4}}
                 <div class="variants-group">
                   {{#each this}}
-                    <input type="radio" name="make-radio" id="make-{{this}}">
-                    <label class="variant" for="make-{{this}}">{{this}}</label>
+                    <input type="radio" name="make-radio" id="make-{{slugify this}}">
+                    <label class="variant" for="make-{{slugify this}}">{{this}}</label>
                   {{/each}}
                 </div>
               {{/slices}}
