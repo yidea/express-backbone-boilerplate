@@ -33,7 +33,6 @@ define([
     },
 
     _restore: function () {
-      //use clone, so cna restore
       this.collection.each(function (model) {
         var name = model.get("name");
         model.set("title", AppState.get(name));

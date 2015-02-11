@@ -35,7 +35,7 @@ define([
       return this;
     },
 
-    fetchModel: function (callback) {
+    fetchModel: function () {
       var options = {
         reset: true,
         data: {
@@ -44,19 +44,16 @@ define([
           s3: AppState.get("model")
         }
       };
-      if (_.isFunction(callback)) { options.success = callback; }
-      this.model.fetch(options);
+      this.model.fetch(options).then(this.restoreSelection);
     },
 
     restoreSelection: function () {
-      var submodel = AppState.get(KEY),
+      var value = AppState.get(KEY),
         id;
-      if (submodel) {
-        id = "#" + KEY + "-" + submodel;
-        _.defer(_.bind(function () {
-          this.$(id).prop("checked", true);
-        }, this));
-      }
+      if (_.isUndefined(value)) { return; }
+
+      id = "#" + KEY + "-" + value;
+      this.$(id).prop("checked", true);
     },
 
     _onClickSubModel: function (ev) {
@@ -65,7 +62,9 @@ define([
       if (submodel.length) {
         AppState.set(KEY, submodel);
         AppState.set("complete", true);
-        AppState.save();
+        //TODO: pending on ux decision on when to save the user selection
+        //https://jira.walmart.com/browse/SEARCH-7695
+        //AppState.save();
       }
       EventBus.trigger("wizard:nextStep", { "selected": submodel, "currentStep": this.step });
     }

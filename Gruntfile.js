@@ -70,7 +70,8 @@ module.exports = function(grunt) {
           "public/**/*.js",
           "!Gruntfile.js",
           "!node_modules/**/*.js",
-          "!public/lib/**/*.js"
+          "!public/lib/**/*.js",
+          "!public/test/**/*.js"
         ]
       }
     },

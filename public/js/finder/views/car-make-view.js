@@ -36,30 +36,27 @@ define([
       return this;
     },
 
-    fetchModel: function (callback) {
+    fetchModel: function () {
       var options = {
         reset: true,
         data: {
           s1: AppState.get("year")
         }
       };
-      if (_.isFunction(callback)) { options.success = callback; }
-      this.model.fetch(options);
+      this.model.fetch(options).then(this.restoreSelection);
     },
 
     restoreSelection: function () {
-      var make = AppState.get(KEY),
+      var value = AppState.get(KEY),
         id;
-      if (make) {
-        id = "#" + KEY + "-" + this.slugify(make);
-        _.defer(_.bind(function () {
-          var $target = this.$(id);
-          if ($target) {
-            $target.prop("checked", true);
-            var index = $target.closest(".tab-content-pane").data("pane-id");
-            this.$tabWidget.trigger("show", [index]);
-          }
-        }, this));
+      if (_.isUndefined(value)) { return; }
+
+      id = "#" + KEY + "-" + this.slugify(value);
+      var $target = this.$(id);
+      if ($target) {
+        $target.prop("checked", true);
+        var index = $target.closest(".tab-content-pane").data("pane-id");
+        this.$tabWidget.trigger("show", [index]);
       }
     },
 

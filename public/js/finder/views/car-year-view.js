@@ -24,6 +24,8 @@ define([
     initialize: function (options) {
       BaseView.prototype.initialize.call(this, options);
 
+      this.listenTo(EventBus, "wizardYear:restore", this.restoreSelection);
+
       this.render();
     },
 
@@ -35,18 +37,16 @@ define([
     },
 
     restoreSelection: function () {
-      var year = AppState.get(KEY),
+      var value = AppState.get(KEY),
         id;
-      if (year) {
-        id = "#" + KEY + "-" + year;
-        _.defer(_.bind(function () {
-          var $target = this.$(id);
-          if ($target) {
-            $target.prop("checked", true);
-            var index = $target.closest(".tab-content-pane").data("pane-id");
-            this.$tabWidget.trigger("show", [index]);
-          }
-        }, this));
+      if (_.isUndefined(value)) { return; }
+
+      id = "#" + KEY + "-" + value;
+      var $target = this.$(id);
+      if ($target) {
+        $target.prop("checked", true);
+        var index = $target.closest(".tab-content-pane").data("pane-id");
+        this.$tabWidget.trigger("show", [index]);
       }
     },
 

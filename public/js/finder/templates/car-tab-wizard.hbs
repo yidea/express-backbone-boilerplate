@@ -2,7 +2,6 @@
   <ul class="tab-nav tab-nav-vertical media-object finder-body-sidebar js-finder-body-sidebar">
   </ul>
   <div class="tab-content media-body finder-body-main js-finder-body-main">
-    <div class="spinner-backdrop hide-content js-spinner-backdrop"><div class="spinner"></div></div>
     {{#each this.steps}}
       <div class="tab-content-pane {{#unless @index}}active{{/unless}} finder-car-{{this.name}} finder-car-content js-finder-car-{{this.name}} js-finder-car-content" id="step-{{@index}}"></div>
     {{/each}}

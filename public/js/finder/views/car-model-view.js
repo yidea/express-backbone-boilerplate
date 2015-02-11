@@ -34,7 +34,7 @@ define([
       return this;
     },
 
-    fetchModel: function (callback) {
+    fetchModel: function () {
       var options = {
         reset: true,
         data: {
@@ -42,19 +42,16 @@ define([
           s2: AppState.get("make")
         }
       };
-      if (_.isFunction(callback)) { options.success = callback; }
-      this.model.fetch(options);
+      this.model.fetch(options).then(this.restoreSelection);
     },
 
     restoreSelection: function () {
-      var model = AppState.get(KEY),
+      var value = AppState.get(KEY),
         id;
-      if (model) {
-        id = "#" + KEY + "-" + model;
-        _.defer(_.bind(function () {
-          this.$(id).prop("checked", true);
-        }, this));
-      }
+      if (_.isUndefined(value)) { return; }
+
+      id = "#" + KEY + "-" + value;
+      this.$(id).prop("checked", true);
     },
 
     _onClickModel: function (ev) {

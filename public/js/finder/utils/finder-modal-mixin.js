@@ -42,12 +42,13 @@ define([
     },
 
     showSpinner: function () {
-      EventBus.trigger("wizard:showSpinner");
+      EventBus.trigger("finder:showSpinner");
     },
 
     hideSpinner: function () {
+      // TDOO: temporary fake ajax loading https://jira.walmart.com/browse/SEARCH-7694
       _.delay(function () {
-        EventBus.trigger("wizard:hideSpinner");
+        EventBus.trigger("finder:hideSpinner");
       }, 250);
     },
 

@@ -1,5 +1,5 @@
 /**
- * Finder Car
+ * Finder Car View
  */
 define([
   "jquery",
@@ -49,14 +49,16 @@ define([
       this.listenTo(EventBus, "finder:completeStep", this._completeStep);
       this.listenTo(EventBus, "finder:disableStep", this._disableStep);
       this.listenTo(EventBus, "finder:enableStep", this._enableStep);
+      this.listenTo(EventBus, "finder:showSpinner", this._showSpinner);
+      this.listenTo(EventBus, "finder:hideSpinner", this._hideSpinner);
 
       this._addSubView(new CarWizardView({ steps: WIZARD }));
       this._addSubView(new CarTireView({ model: new CarModel() }));
 
-      this.$steps = this.$el.find(".js-tab-widget").first();
+      this.$steps = this.$(".js-tab-widget").first();
+      this.$spinner = this.$(".js-spinner-backdrop");
       this.renderTabWidget(this.$steps);
 
-      //restore if year,make,model,submodel data exist
       AppState.fetch();
       if (AppState.get("complete") === true) {
         EventBus.trigger("wizard:restore");
@@ -89,6 +91,14 @@ define([
       if (!_.isUndefined(data.step) && _.isNumber(data.step)) {
         this.$steps.trigger("enable", [data.step]);
       }
+    },
+
+    _showSpinner: function () {
+      this.$spinner.removeClass("hide-content");
+    },
+
+    _hideSpinner: function () {
+      this.$spinner.addClass("hide-content");
     }
   });
 

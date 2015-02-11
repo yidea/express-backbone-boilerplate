@@ -1,5 +1,5 @@
 /**
- * Widget Base View
+ * Finder Base View
  */
 define([
   "jquery",
