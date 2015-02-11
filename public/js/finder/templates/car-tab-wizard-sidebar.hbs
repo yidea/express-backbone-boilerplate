@@ -1,0 +1,6 @@
+{{#each this}}
+  <li class="{{#unless @index}}active{{/unless}} {{#if this.disabled}}disabled{{/if}}" data-id="{{@index}}" data-name="{{this.name}}" {{#if this.completed}}data-completed="true"{{/if}}>
+    <a class="btn btn-inverse" href="#step-{{@index}}">{{#if this.title}}{{this.title}}{{else}}The car {{this.name}}{{/if}}</a>
+    <i class="wmicon wmicon-14 wmicon-angle-right"></i>
+  </li>
+{{/each}}

@@ -33,10 +33,10 @@ define([
   CarModel
   ) {
   var WIZARD = [
-    { name: "year", title: "The car year", view: CarYearView },
-    { name: "make", title: "The car make", view: CarMakeView, model: CarModel },
-    { name: "model", title: "The car model", view: CarModelView, model: CarModel },
-    { name: "submodel", title: "The car submodel", view: CarSubmodelView, model: CarModel }
+    { name: "year", disabled: false, view: CarYearView },
+    { name: "make", disabled: true, view: CarMakeView, model: CarModel },
+    { name: "model", disabled: true, view: CarModelView, model: CarModel },
+    { name: "submodel", disabled: true, view: CarSubmodelView, model: CarModel }
   ];
 
   return BaseView.extend({
@@ -57,10 +57,7 @@ define([
       this.renderTabWidget(this.$steps);
 
       //restore if year,make,model,submodel data exist
-      //a: if AppState.get("complete") === true: update Wizard title and remove disable, trigger each model instance model.fetch
       AppState.fetch();
-      //console.log(AppState.toJSON());
-
       if (AppState.get("complete") === true) {
         EventBus.trigger("wizard:restore");
       }

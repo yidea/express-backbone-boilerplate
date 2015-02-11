@@ -1,11 +1,5 @@
 <div class="finder-content tab-widget media js-tab-widget">
   <ul class="tab-nav tab-nav-vertical media-object finder-body-sidebar js-finder-body-sidebar">
-    {{#each this.steps}}
-      <li class="{{#unless @index}}active{{else}}disabled{{/unless}}" data-id="{{@index}}" data-name="{{this.name}}">
-        <a class="btn btn-inverse" href="#step-{{@index}}">{{this.title}}</a>
-        <i class="wmicon wmicon-14 wmicon-angle-right"></i>
-      </li>
-    {{/each}}
   </ul>
   <div class="tab-content media-body finder-body-main js-finder-body-main">
     <div class="spinner-backdrop hide-content js-spinner-backdrop"><div class="spinner"></div></div>
